@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings - PampangaJobs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #5a67d8;
+        }
+
+        .sector-section {
+            margin-bottom: 4rem;
+        }
+
+        .sector-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .sector-description {
+            color: #666;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .job-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-name {
+            color: #667eea;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .job-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #28a745;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .job-badge.urgent {
+            background: #dc3545;
+        }
+
+        .job-badge.featured {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .job-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .job-requirements {
+            margin-bottom: 1.5rem;
+        }
+
+        .requirements-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .requirements-list {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .salary {
+            font-weight: 600;
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+
+        .apply-btn {
+            background: #667eea;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .apply-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .posted-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                align-items: start;
+            }
+            
+            .job-footer {
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+
+            .search-btn {
+                border-radius: 0 0 15px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">PampangaJobs</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="jobs.html">Browse Jobs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Job Opportunities in Pampanga</h1>
+            <p>Find your perfect career match with top employers across the province</p>
+        </div>
+        <img src="images/bg2.jpg"
+        alt="Pampanga Scenery" 
+        style="display:block; max-width:100%; height:auto; margin: 0 auto 2rem auto; border-radius: 15px;" />
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search jobs by title, company, or location...">
+            <button class="search-btn" onclick="searchJobs()">Search</button>
+        </div>
+
+        <!-- BPO/Call Center Sector -->
+        <div class="sector-section">
+            <h2 class="sector-title">BPO & Call Center</h2>
+            <p class="sector-description">High-growth opportunities in customer service and business process outsourcing</p>
+            
+            <div class="job-grid">
+                <div class="job-card">
+                    <div class="job-badge">Hiring</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Customer Service Representative</div>
+                            <div class="company-name">TechHub BPO Solutions</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 Angeles City</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Entry Level</span>
+                    </div>
+                    <div class="job-description">
+                        Handle customer inquiries via phone, email, and chat for international clients. Provide excellent customer support and resolve issues efficiently.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• College graduate or equivalent<br>• Excellent English communication skills<br>• Computer literate</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱18,000 - ₱25,000</div>
+                            <div class="posted-date">Posted 2 days ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge urgent">Urgent</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Technical Support Specialist</div>
+                            <div class="company-name">Global Connect BPO</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 Clark Freeport</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Mid Level</span>
+                    </div>
+                    <div class="job-description">
+                        Provide technical support to customers for software and hardware issues. Troubleshoot problems and guide customers through solutions.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• IT background preferred<br>• 1-2 years customer service experience<br>• Strong problem-solving skills</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱22,000 - ₱30,000</div>
+                            <div class="posted-date">Posted 1 day ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manufacturing Sector -->
+        <div class="sector-section">
+            <h2 class="sector-title">Manufacturing & Production</h2>
+            <p class="sector-description">Industrial opportunities in Pampanga's growing manufacturing sector</p>
+            
+            <div class="job-grid">
+                <div class="job-card">
+                    <div class="job-badge featured">Featured</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Production Supervisor</div>
+                            <div class="company-name">Pampanga Manufacturing Corp</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 San Fernando</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Mid Level</span>
+                    </div>
+                    <div class="job-description">
+                        Oversee production operations, manage team performance, ensure quality standards, and maintain safety protocols in manufacturing environment.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• Engineering degree preferred<br>• 3+ years manufacturing experience<br>• Leadership and team management skills</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱35,000 - ₱45,000</div>
+                            <div class="posted-date">Posted 3 days ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge">Hiring</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Quality Control Inspector</div>
+                            <div class="company-name">Prime Electronics Pampanga</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 Mabalacat</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Entry Level</span>
+                    </div>
+                    <div class="job-description">
+                        Inspect products and materials for defects, ensure compliance with quality standards, and maintain detailed inspection records.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• Technical course or equivalent<br>• Attention to detail<br>• Knowledge of quality control procedures</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱18,000 - ₱24,000</div>
+                            <div class="posted-date">Posted 5 days ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Healthcare Sector -->
+        <div class="sector-section">
+            <h2 class="sector-title">Healthcare & Medical</h2>
+            <p class="sector-description">Make a difference in healthcare with leading medical institutions in Pampanga</p>
+            
+            <div class="job-grid">
+                <div class="job-card">
+                    <div class="job-badge">Hiring</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Registered Nurse</div>
+                            <div class="company-name">Angels University Foundation Medical Center</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 Angeles City</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Entry Level</span>
+                    </div>
+                    <div class="job-description">
+                        Provide quality patient care in medical-surgical unit. Administer medications, monitor patient conditions, and coordinate with healthcare team.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• BSN graduate with license<br>• Fresh graduates welcome<br>• Compassionate and patient-focused</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱25,000 - ₱32,000</div>
+                            <div class="posted-date">Posted 1 week ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge urgent">Urgent</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Medical Technologist</div>
+                            <div class="company-name">Pampanga Medical Laboratory</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 San Fernando</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Entry Level</span>
+                    </div>
+                    <div class="job-description">
+                        Perform laboratory tests and analyses, operate medical equipment, and ensure accurate test results for patient diagnosis.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• Medical Technology graduate<br>• Licensed Medical Technologist<br>• Knowledge of laboratory procedures</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱20,000 - ₱28,000</div>
+                            <div class="posted-date">Posted 2 days ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IT Sector -->
+        <div class="sector-section">
+            <h2 class="sector-title">Information Technology</h2>
+            <p class="sector-description">Tech opportunities in Pampanga's expanding digital economy</p>
+            
+            <div class="job-grid">
+                <div class="job-card">
+                    <div class="job-badge featured">Featured</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Software Developer</div>
+                            <div class="company-name">Clark Digital Solutions</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 Clark Freeport</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Mid Level</span>
+                    </div>
+                    <div class="job-description">
+                        Develop and maintain web applications using modern frameworks. Work with React, Node.js, and cloud technologies in an agile environment.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• Computer Science degree<br>• 2+ years development experience<br>• Proficient in React and Node.js</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱50,000 - ₱70,000</div>
+                            <div class="posted-date">Posted 1 day ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge">Hiring</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">IT Support Specialist</div>
+                            <div class="company-name">Pampanga Tech Services</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 Angeles City</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Entry Level</span>
+                    </div>
+                    <div class="job-description">
+                        Provide technical support to end users, troubleshoot hardware and software issues, and maintain IT infrastructure.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• IT-related course<br>• Basic networking knowledge<br>• Strong problem-solving skills</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱22,000 - ₱30,000</div>
+                            <div class="posted-date">Posted 4 days ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Retail & Hospitality Sector -->
+        <div class="sector-section">
+            <h2 class="sector-title">Retail & Hospitality</h2>
+            <p class="sector-description">Customer service roles in Pampanga's vibrant retail and tourism industry</p>
+            
+            <div class="job-grid">
+                <div class="job-card">
+                    <div class="job-badge">Hiring</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Hotel Front Desk Officer</div>
+                            <div class="company-name">Pampanga Grand Hotel</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 San Fernando</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Entry Level</span>
+                    </div>
+                    <div class="job-description">
+                        Manage guest check-ins and check-outs, handle reservations, provide information about hotel services, and ensure excellent customer service.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• Hospitality course preferred<br>• Excellent communication skills<br>• Customer service oriented</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱16,000 - ₱22,000</div>
+                            <div class="posted-date">Posted 6 days ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-badge">Hiring</div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Sales Associate</div>
+                            <div class="company-name">SM City Pampanga</div>
+                        </div>
+                    </div>
+                    <div class="job-meta">
+                        <span class="meta-item">📍 San Fernando</span>
+                        <span class="meta-item">⏰ Full-time</span>
+                        <span class="meta-item">👥 Entry Level</span>
+                    </div>
+                    <div class="job-description">
+                        Assist customers with product inquiries, process sales transactions, maintain store presentation, and achieve sales targets.
+                    </div>
+                    <div class="job-requirements">
+                        <div class="requirements-title">Requirements:</div>
+                        <div class="requirements-list">• High school graduate<br>• Sales experience preferred<br>• Friendly and outgoing personality</div>
+                    </div>
+                    <div class="job-footer">
+                        <div>
+                            <div class="salary">₱15,000 - ₱20,000</div>
+                            <div class="posted-date">Posted 1 week ago</div>
+                        </div>
+                        <a href="apply.html" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function searchJobs() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const jobCards = document.querySelectorAll('.job-card');
+            let visibleCount = 0;
+            
+            jobCards.forEach(card => {
+                const title = card.querySelector('.job-title').textContent.toLowerCase();
+                const company = card.querySelector('.company-name').textContent.toLowerCase();
+                const description = card.querySelector('.job-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || company.includes(searchTerm) || description.includes(searchTerm) || searchTerm === '') {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            if (visibleCount === 0 && searchTerm !== '') {
+                alert(`No jobs found for "${searchTerm}". Try different keywords.`);
+            }
+        }
+
+        // Add enter key search functionality
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchJobs();
+            }
+        });
+
+        // Add smooth scrolling for sector navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation when job cards come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all job cards
+        document.querySelectorAll('.job-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

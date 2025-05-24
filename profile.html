@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diana Mae Manalang - Web Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            text-align: center;
+        }
+
+        .profile-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #6366f1;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .profile-details h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .profile-info {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #6366f1;
+        }
+
+        .profile-info h3 {
+            color: #6366f1;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .info-label {
+            font-weight: 600;
+            min-width: 80px;
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .story-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .story-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #6366f1;
+        }
+
+        .story-card h3 {
+            color: #6366f1;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .story-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .values-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .values-content h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            padding: 2rem;
+            border-radius: 12px;
+            background: #f8f9ff;
+            border: 2px solid #e5e7eb;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: #6366f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .value-card h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: white;
+            color: #6366f1;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .profile-image img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">PampangaJobs</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="jobs.html">Browse Jobs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Web Designer Profile</h1>
+            <p>Crafting beautiful, functional websites that bring your vision to life</p>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section" id="about">
+        <div class="container">
+            <div class="profile-grid">
+                <div class="profile-image">
+                    <img src="images/profile.jpg" alt="Description of image" width="300" height="300" />
+                </div>
+                <div class="profile-details">
+                    <h2>Meet Diana Mae</h2>
+                    <div class="profile-info">
+                        <h3>Personal Details</h3>
+                        <div class="info-item">
+                            <span class="info-label">Name:</span>
+                            <span class="info-value">Diana Mae Manalang</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Age:</span>
+                            <span class="info-value">23</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Specialty:</span>
+                            <span class="info-value">Web Design & Development</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location:</span>
+                            <span class="info-value">Pampanga, Philippines</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 1.1rem; color: #666; line-height: 1.8;">
+                        A passionate web designer with a keen eye for detail and a love for creating digital experiences that make a difference. With expertise in modern web technologies and a deep understanding of user experience principles, I bring creativity and technical skill to every project.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-content">
+            <h2>My Journey & Vision</h2>
+            <div class="story-grid">
+                <div class="story-card">
+                    <h3>🚀 Why I Started</h3>
+                    <p>My journey into web design began during college when I discovered the power of combining creativity with technology. I was fascinated by how a well-designed website could transform a business and connect people across the globe. What started as curiosity quickly became a passion as I realized I could help local businesses in Pampanga establish their digital presence and compete in the modern marketplace.</p>
+                </div>
+                <div class="story-card">
+                    <h3>💡 How It All Began</h3>
+                    <p>This website and my career were born from a simple belief: every business deserves a beautiful, functional online presence. After seeing many local entrepreneurs struggle with outdated or non-existent websites, I decided to bridge that gap. I started by observing small businesses in my community, learning their unique needs and challenges, which shaped my approach to web design - always putting the user and business goals first.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-content">
+            <h2>My Design Philosophy</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎨</div>
+                    <h3>Creative Excellence</h3>
+                    <p>I believe in pushing creative boundaries while maintaining functionality. Every design should tell a story and create an emotional connection with users.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Performance First</h3>
+                    <p>Beautiful designs mean nothing if they don't perform. I prioritize fast loading times, mobile responsiveness, and seamless user experiences.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Collaborative Approach</h3>
+                    <p>The best websites are built through collaboration. I work closely with clients to understand their vision and bring it to life through thoughtful design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Let's work together to create something amazing that represents your brand and achieves your goals.</p>
+            <a href="#" class="contact-btn">Get In Touch</a>
+        </div>
+    </section>
+</body>
+</html>

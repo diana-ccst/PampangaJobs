@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories & Reviews - PampangaJobs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #7c3aed;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #7c3aed;
+        }
+
+        /* --- HERO SECTION WITH IMAGE AND OVERLAY --- */
+        .hero-section {
+            position: relative;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            overflow: hidden;
+            background: url("images/bgphoto.jpg") center center/cover no-repeat;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            opacity: 0.85; /* Adjust for more or less purple overlay */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4a5568;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #7c3aed;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+
+        .story-info h3 {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .story-info p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin: 1rem 0;
+        }
+
+        .story-text {
+            color: #4a5568;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .company-tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin: 4rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #7c3aed;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .stat-item p {
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 12px;
+            margin: 4rem 0;
+        }
+
+        .cta-button {
+            background: white;
+            color: #7c3aed;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">PampangaJobs</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="jobs.html">Browse Jobs</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Success Stories & Reviews</h1>
+            <p>Real stories from professionals who found their dream careers through PampangaJobs</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>2,847</h3>
+                    <p>Successful Job Placements</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4.8/5</h3>
+                    <p>Average User Rating</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Job Satisfaction Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>180+</h3>
+                    <p>Partner Companies</p>
+                </div>
+            </div>
+        </div>
+        <h2 class="section-title">Featured Success Stories</h2>
+        
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="avatar">MR</div>
+                    <div class="story-info">
+                        <h3>Mary Rosales</h3>
+                        <p>Software Developer at TechCorp Angeles</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="story-text">"PampangaJobs connected me with my dream job in tech. The application process was seamless, and I found multiple opportunities that matched my skills perfectly. Within two weeks, I had three job offers!"</p>
+                <span class="company-tag">Technology</span>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="avatar">JS</div>
+                    <div class="story-info">
+                        <h3>John Santos</h3>
+                        <p>Marketing Manager at SM City Pampanga</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="story-text">"After months of job searching, PampangaJobs helped me land a management position in retail. The local focus made all the difference - I didn't have to relocate and found a great company right here in Pampanga."</p>
+                <span class="company-tag">Retail</span>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="avatar">AC</div>
+                    <div class="story-info">
+                        <h3>Annalyn Crisostomo</h3>
+                        <p>Nurse at Angeles University Foundation Medical Center</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="story-text">"The healthcare opportunities on PampangaJobs are excellent. I found my current position within days of creating my profile. The platform really understands the local job market and connects you with quality employers."</p>
+                <span class="company-tag">Healthcare</span>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="avatar">RG</div>
+                    <div class="story-info">
+                        <h3>Ronie Garcia</h3>
+                        <p>Operations Supervisor at Clark Freeport Zone</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="story-text">"Working in logistics was always my goal, and PampangaJobs made it happen. The job matching system is incredibly accurate - every position I applied for was relevant to my experience and career goals."</p>
+                <span class="company-tag">Logistics</span>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="avatar">LT</div>
+                    <div class="story-info">
+                        <h3>Lisa Torres</h3>
+                        <p>Executive Assistant at Megaworld Corporation</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="story-text">"Professional, efficient, and results-driven - that's PampangaJobs in three words. I appreciate how they focus specifically on our province, giving local talent the spotlight we deserve."</p>
+                <span class="company-tag">Corporate</span>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="avatar">DP</div>
+                    <div class="story-info">
+                        <h3>David Perez</h3>
+                        <p>Chef at Marriott Hotel Clark</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="story-text">"The hospitality industry in Pampanga is booming, and PampangaJobs helped me find my place in it. Great platform with genuine opportunities from reputable establishments."</p>
+                <span class="company-tag">Hospitality</span>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Write Your Success Story?</h2>
+            <p>Join thousands of professionals who found their dream jobs through PampangaJobs</p>
+            <a href="jobs.html" class="cta-button">Start Your Journey Today</a>
+        </div>
+    </main>
+</body>
+</html>
